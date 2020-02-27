@@ -14,6 +14,8 @@ module.exports = {
   },
   mode: NODE_ENV,
   devtool: isProd ? 'none' : 'source-map',
+  // 让控制台不显示全部构建信息，有错误时才显示
+  stats: 'errors-only',
   optimization: {
     // 提取公共文件
     splitChunks: {
