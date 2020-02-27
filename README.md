@@ -1,5 +1,5 @@
 ### 安装与运行
-```
+```javascript
 // 安装依赖
 npm i
 // 运行项目
@@ -7,12 +7,12 @@ npm start 或 npm run dev
 ```
 
 ### 构建
-```
+```javascript
 npm run build
 ```
 
 ### pacakge.json解析
-```
+```javascript
   "scripts": {
     "start": "启动项目，运行dev",
     "dev": "启动项目",
