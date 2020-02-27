@@ -1,5 +1,5 @@
 ### pacakge.json解析
-```
+```javascript
   "scripts": {
     "start": "启动项目，运行dev",
     "dev": "启动项目",
@@ -11,7 +11,6 @@
   "?autoprefixer": "postcss插件，对不同浏览器环境加前缀",
   "?css-loader": "将css转换为webpack可识别的js代码",
   "?extract-text-webpack-plugin": "单独打包css，将css从js中提取出来",
-  "?force-strict-loader": "自定义loader，功能为为js文件加上严格模式字符",
   "?html-webpack-plugin": "为js文件提供html模板",
   "?less": "css预处理器",
   "?less-loader": "将less文件编译为css代码",
