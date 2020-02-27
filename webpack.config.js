@@ -100,8 +100,8 @@ module.exports = {
     new HappyPack({
       id: 'js',
       loaders: [
-        // 自定义loader,增加'use strict'
-        'force-strict-loader',
+        // // 自定义loader,增加'use strict'
+        // 'force-strict-loader',
         'babel-loader',
       ],
     }),
