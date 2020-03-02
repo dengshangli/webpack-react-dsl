@@ -41,11 +41,19 @@ module.exports = {
     //Webpack将识别出它认为没有被使用的代码，并在最初的打包步骤中给它做标记,tree-shaking有用
     usedExports: true,
   },
+  resolve: {
+    alias: {
+      // 为某个路径取别名
+      assets: path.resolve(__dirname, 'src/assets/'),
+    }
+  },
   // 必须与HtmlWebpackPlugin配合使用，否则无法使用缓存的文件，只能用dist目录下文件
   devServer: {
+    //  __dirname表示当前文件绝对目录，join()用于连接目录
     contentBase: path.join(__dirname, "dist"),
     compress: true,
     port: 8080,
+    // 启用 webpack 的模块热替换特性
     hot: true,
   },
   module: {
@@ -95,7 +103,20 @@ module.exports = {
       test: /\.js$/,
       loader: 'happypack/loader?id=js',
       exclude: /(node_modules|bower_components)/,
-    }],
+    }, {
+      test: /\.(png|jpg|gif|svg)$/,
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+              // 表示小于限制大小后图片转化为base64,单位Byte,1024Byte(字节)=1KB
+              limit: 10240,
+              name: '[name].[ext]',
+              outputPath: './assets/',
+          },
+        }
+      ],
+  }],
   },
   plugins: [
     // 开启多个线程构建，提升构建速度
@@ -110,7 +131,16 @@ module.exports = {
     // 提取css代码
     new ExtractTextPlugin(isProd ? 'bundle@[chunkhash].css' : 'bundle.css'),
     // 将js、css代码插入html模板文件中
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Hello World app',
+      minify: { // 压缩HTML文件
+        removeComments: true, // 移除HTML中的注释
+        collapseWhitespace: true, // 删除空白符与换行符
+        minifyCSS: true// 压缩内联css
+      },
+      filename: 'index.html',
+      template: './public/index.html'
+    }),
     // 热重载插件
     // new webpack.HotModuleReplacementPlugin(),
   ]

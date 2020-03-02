@@ -1,8 +1,14 @@
 {
   //babel预设，目的是为了方便配置，集成了多个插件
   "presets": [
-    // 把 modules 设置为 false，就是告诉 babel 不要编译模块代码。这会让 Babel 保留我们现有的 es2015 import/export 语句。
-    ["@babel/preset-env", { "modules": false }]
+    "@babel/preset-react",
+    [
+      "@babel/preset-env", 
+      { 
+        // 把 modules 设置为 false，就是告诉 babel 不要编译模块代语句。这会让 Babel 保留我们现有的 es2015 import/export 语句。
+        "modules": false
+      }
+    ]
   ],
   // babel插件
   "plugins": [

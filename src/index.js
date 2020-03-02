@@ -1,7 +1,5 @@
 import React from 'react';
-import { foo } from './add-content.js';
-import './styles.less';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-document.write('index.js', React.version);
-document.write('My fisrst Webpack app3 . <br /><div class="test">123</div>');
-foo();
+ReactDOM.render(<App />, document.getElementById('root'));
