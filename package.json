@@ -1,5 +1,5 @@
 {
-  "name": "webpackdemo",
+  "name": "webpack-react-dsl",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
