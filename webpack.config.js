@@ -1,4 +1,5 @@
 const path = require('path');
+const os = require('os');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -6,7 +7,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 const HappyPack = require('happypack');
 const NODE_ENV = process.env.NODE_ENV;
 const isProd = NODE_ENV === 'production';
-
 module.exports = {
   entry: ['@babel/polyfill', './src/index.js'],
   output: {
@@ -21,12 +21,14 @@ module.exports = {
     splitChunks: {
       chunks: 'all', // 默认为async, all代表同步异步导入时都可以提取
     },
-    // 开启js代码压缩，生产环境自动为true
-    minimize: true,
+    // 开启js代码压缩，生产环境为true
+    minimize: isProd ? true : false,
     // 压缩器
     minimizer: [
        // js代码压缩插件,tree-shaking必须使用
-      new TerserPlugin(),
+      new TerserPlugin({
+        sourceMap: true,
+      }),
        // css代码压缩插件
       new OptimizeCSSAssetsPlugin({
       // 压缩处理器, 默认为 cssnano，webpack内置，不用安装
@@ -50,11 +52,17 @@ module.exports = {
   // 必须与HtmlWebpackPlugin配合使用，否则无法使用缓存的文件，只能用dist目录下文件
   devServer: {
     //  __dirname表示当前文件绝对目录，join()用于连接目录
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, 'dist'),
+    // 配置是否启用 gzip 压缩
     compress: true,
+    // 端口号
     port: 8080,
     // 启用 webpack 的模块热替换特性
     hot: true,
+    // 自动打开浏览器
+    open: true,
+    // 域名配置，用本机ip
+    host: getNetworkIp(),
   },
   module: {
     rules: [{
@@ -100,7 +108,7 @@ module.exports = {
       sideEffects: true,
       exclude: /node_modules/,
     }, {
-      test: /\.js$/,
+      test: /\.(js|jsx)$/,
       loader: 'happypack/loader?id=js',
       exclude: /(node_modules|bower_components)/,
     }, {
@@ -141,7 +149,25 @@ module.exports = {
       filename: 'index.html',
       template: './public/index.html'
     }),
-    // 热重载插件
-    // new webpack.HotModuleReplacementPlugin(),
   ]
+}
+
+function getNetworkIp() {
+	let needHost = ''; // 打开的host
+	try {
+		// 获得网络接口列表
+		let network = os.networkInterfaces();
+		for (let dev in network) {
+			let iface = network[dev];
+			for (let i = 0; i < iface.length; i++) {
+				let alias = iface[i];
+				if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+					needHost = alias.address;
+				}
+			}
+		}
+	} catch (e) {
+		needHost = 'localhost';
+	}
+	return needHost;
 }

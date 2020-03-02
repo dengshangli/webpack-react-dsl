@@ -12,13 +12,5 @@ module.exports = {
         'ie 8',
       ],
     }),
-    // stylelint({
-    //   config: {
-    //     rules: {
-    //       // 当我们的代码中出现了“！important”时，控制台就会给出警告
-    //       'declaration-no-important': true,
-    //     },
-    //   },
-    // }),
   ],
 };
