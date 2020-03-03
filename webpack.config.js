@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HappyPack = require('happypack');
 
 const { NODE_ENV } = process.env;
@@ -180,5 +181,7 @@ module.exports = {
       template: path.resolve('public/index.html'),
       favicon: './src/assets/favicon.ico',
     }),
+    // 让控制台显示打包进度
+    new ProgressBarPlugin(),
   ],
 };

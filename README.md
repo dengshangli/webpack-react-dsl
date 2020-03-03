@@ -49,5 +49,6 @@ npm run build
   "@babel/runtime": "提取编译生成的公用方法到其他文件，再引入这些方法，避免生成大量重复的代码",
   "@babel/plugin-transform-runtime": "辅助插件，它会自动动态require @babel/runtime中的内容",
   "happypack": "开启多个线程，让多个loader并行执行", 
+  "progress-bar-webpack-plugin": "webpack插件，让控制台显示打包进度",
   }
   ```
