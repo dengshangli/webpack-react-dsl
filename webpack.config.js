@@ -27,6 +27,7 @@ module.exports = {
     minimizer: [
        // js代码压缩插件,tree-shaking必须使用
       new TerserPlugin({
+        // 防止开发环境使用压缩时sourceMap失效，生产环境是去除的
         sourceMap: true,
       }),
        // css代码压缩插件
@@ -147,7 +148,8 @@ module.exports = {
         minifyCSS: true// 压缩内联css
       },
       filename: 'index.html',
-      template: './public/index.html'
+      template: path.resolve('public/index.html'),
+      favicon: './src/assets/favicon.ico',
     }),
   ]
 }
