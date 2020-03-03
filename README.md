@@ -51,5 +51,7 @@ npm run build
   "@babel/plugin-transform-runtime": "辅助插件，它会自动动态require @babel/runtime中的内容",
   "happypack": "开启多个线程，让多个loader并行执行", 
   "progress-bar-webpack-plugin": "webpack插件，让控制台显示打包进度",
+   "husky": "注册 git hook, 安装后在script里边写precommit命令，在git commit时会先执行这个命令，可以用来做提交前代码检查",
+   "lint-staged": "取得所有被提交的文件依次执行写好的任务",
   }
   ```
