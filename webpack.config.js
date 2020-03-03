@@ -44,7 +44,7 @@ module.exports = {
   // 让控制台不显示全部构建信息，有错误时才显示
   stats: 'errors-only',
   optimization: {
-    // 提取公共文件
+    // 提取公共文件s
     splitChunks: {
       chunks: 'all', // 默认为async, all代表同步异步导入时都可以提取
     },
@@ -165,6 +165,7 @@ module.exports = {
         // // 自定义loader,增加'use strict'
         // 'force-strict-loader',
         'babel-loader',
+        'eslint-loader',
       ],
     }),
     // 提取css代码

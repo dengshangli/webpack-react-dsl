@@ -5,7 +5,7 @@ import styles from './App.less';
 function App() {
   return (
     <div className={styles.app}>
-      <img src={logo} alt="logo" />
+      <img src={logo} alt="logo" />1
     </div>
   );
 }

@@ -35,6 +35,7 @@ npm run build
   "webpack-cli": "webpack命令行工具",
   "webpack-dev-server": "开启一个本地服务，使用便于缓存代码运行，并非真正打包，需与html-webpack-plugin结合使用",
   "eslint": "js代码检查工具",
+  "eslint-loader": "在项目构建时进行js代码检查",
   "eslint-import-resolver-webpack": "解决webpack为路径取别名后eslint报错问题",
   // "stylelint-config-recommended": "开启了所有可能有错的样式的验证规则",
   "stylelint-config-standard": "开启了60多个风格规则并设置了实用的默认配置",
