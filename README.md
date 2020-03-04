@@ -17,7 +17,10 @@ npm run build
     "start": "启动项目，运行dev",
     "dev": "启动项目",
     "build": "构建项目，生成dist目录，代码为生产环境代码",
-    "buildLib": "生成lib目录，代码为babel编译后的代码"
+    "buildLib": "生成lib目录，代码为babel编译后的代码",
+    "lint": "检查js代码及样式代码",
+    "lint:js": "检查js代码，包括.js及.jsx结尾代码",
+    "lint:style": "检查样式代码，包括css及less"
   },
   "sideEffects": "false，告诉 Webpack 没有文件有副作用，所有文件都可以 tree-shaking,会识别全局导入css为无用代码，造成全局导入css被删除，例：import './MyStylesheet.css';，可在css相关loader重新设为true",
   "devDependencies": {
