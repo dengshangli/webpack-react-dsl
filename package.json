@@ -60,7 +60,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx}": "npx eslint",
-    "*.{less,css}": "npx stylelint"
+    "**/*.{js,jsx}": "npx eslint",
+    "**/*.{less,css}": "npx stylelint"
   }
 }
