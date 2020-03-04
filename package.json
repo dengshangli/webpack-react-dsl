@@ -6,7 +6,8 @@
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack",
-    "buildLib": "babel src -d lib"
+    "buildLib": "babel src -d lib",
+    "precommit": "lint-staged"
   },
   "author": "dengshangli",
   "license": "ISC",
@@ -56,7 +57,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run precommit"
     }
   },
   "lint-staged": {
