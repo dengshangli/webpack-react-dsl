@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "precommit": "npx eslint src/**",
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack",
-    "buildLib": "babel src -d lib",
-    "precommit": "npx eslint src/**"
+    "buildLib": "babel src -d lib"
   },
   "author": "dengshangli",
   "license": "ISC",
