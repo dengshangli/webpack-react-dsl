@@ -7,7 +7,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack",
     "buildLib": "babel src -d lib",
-    "precommit": "eslint src/**/*.js"
+    "precommit": "eslint src/*.js"
   },
   "author": "dengshangli",
   "license": "ISC",
