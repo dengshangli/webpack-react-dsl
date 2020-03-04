@@ -62,6 +62,6 @@
   "lint-staged": {
     "**/*.{js,jsx}": "eslint --ext .js",
     "**/*.css": "stylelint",
-    "**/*.less": "stylelint --syntax = less"
+    "**/*.less": "stylelint"
   }
 }
