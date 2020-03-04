@@ -62,8 +62,7 @@
     }
   },
   "lint-staged": {
-    "**/*.{js,jsx}": "eslint --ext .js",
-    "**/*.css": "stylelint",
-    "**/*.less": "stylelint"
+    "**/*.{js,jsx}": "npm run lint:js",
+    "**/*.{css,less}": "npm run lint:style"
   }
 }
