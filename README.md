@@ -55,7 +55,7 @@ npm run build
   "happypack": "开启多个线程，让多个loader并行执行", 
   "progress-bar-webpack-plugin": "webpack插件，让控制台显示打包进度",
    "husky": "注册 git hook, 安装后在script里边写precommit命令，在git commit时会先执行这个命令，可以用来做提交前代码检查",
-   "lint-staged": "取得所有被提交的文件依次执行写好的任务,对js任务支持良好，css只支持默认的规则，做基本的校验，不会读取.stylelintrc文件的自定义规则",
+   "lint-staged": "取得所有被提交的文件依次执行写好的任务",
   }
   //安装husky后直接配置，读取lint-staged任务
   "husky": {
@@ -65,8 +65,7 @@ npm run build
   },
   //git commit前执行的的任务列表
   "lint-staged": {
-    "**/*.{js,jsx}": "eslint --ext .js",
-    "**/*.css": "stylelint",
-    "**/*.less": "stylelint --syntax = less"
+    "**/*.{js,jsx}": "npm run lint:js",
+    "**/*.{css,less}": "npm run lint:style"
   }
   ```
