@@ -165,14 +165,13 @@ module.exports = {
         // // 自定义loader,增加'use strict'
         // 'force-strict-loader',
         'babel-loader',
-        'eslint-loader',
       ],
     }),
     // 提取css代码
     new ExtractTextPlugin(isProd ? 'bundle@[chunkhash].css' : 'bundle.css'),
     // 将js、css代码插入html模板文件中
     new HtmlWebpackPlugin({
-      title: 'Hello World app',
+      // title: 'Hello World app',
       minify: { // 压缩HTML文件
         removeComments: true, // 移除HTML中的注释
         collapseWhitespace: true, // 删除空白符与换行符
