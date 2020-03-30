@@ -17,12 +17,13 @@ npm run build
     "start": "启动项目，运行dev",
     "dev": "启动项目",
     "build": "构建项目，生成dist目录，代码为生产环境代码",
-    "buildLib": "生成lib目录，代码为babel编译后的代码",
+    "buildLib": "生成lib目录，代码为babel编译后的代码,  --copy-files表示所有文件都编译，不加表示只编译js",
     "lint": "检查js代码及样式代码",
     "lint:js": "检查js代码，包括.js及.jsx结尾代码",
     "lint:style": "检查样式代码，包括css及less"
   },
   "sideEffects": "false，告诉 Webpack 没有文件有副作用，所有文件都可以 tree-shaking,会识别全局导入css为无用代码，造成全局导入css被删除，例：import './MyStylesheet.css';，可在css相关loader重新设为true",
+  "peerDependency": "解决node_module目录下嵌套多层的问题，例a、b模块同时依赖c模块，a、b模块里把对c的依赖写在peerDependency里边，安装时c模块会与a、b模块同级, 用dependencies会生成多层node_module",
   "devDependencies": {
   "autoprefixer": "postcss插件，对不同浏览器环境加前缀",
   "file-loader": "用于处理图片loader"，

@@ -75,10 +75,11 @@ module.exports = {
   resolve: {
     alias: {
       // 为某个路径取别名
-      assets: path.resolve(__dirname, 'src/assets/'),
+      '@': path.resolve(__dirname, 'src/'),
+
     },
     // 在执行import语句时遇到以下文件，后缀时可以省略
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx'],
   },
   // 必须与HtmlWebpackPlugin配合使用，否则无法使用缓存的文件，只能用dist目录下文件
   devServer: {
