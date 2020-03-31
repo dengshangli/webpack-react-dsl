@@ -98,25 +98,26 @@ module.exports = {
   },
   module: {
     rules: [{
-      test: /\.css$/,
+      test: /\.(less|css)$/,
       use: ExtractTextPlugin.extract({
         use: [
+          // 这里对css不开启模块化，防止 import './style.css' 这种类型的样式失效
+          'css-loader',
+          'postcss-loader',
           {
-            loader: 'css-loader',
+            loader: 'less-loader',
             options: {
-              // 开启css模块化
-              modules: { localIdentName: '[path][name]__[local]--[hash:base64:5]' },
               sourceMap: true,
             },
           },
-          'postcss-loader',
         ],
       }),
       // 将css代码识别为有副作用，避免tree-sahking执行全局import 'styles.css'失效
       sideEffects: true,
-      exclude: /node_modules/,
+      // 只编译node_modules文件，不模块化的情况
+      include: /node_modules/,
     }, {
-      test: /\.less$/,
+      test: /\.(less|css)$/,
       use: ExtractTextPlugin.extract({
         use: [
           {
@@ -138,6 +139,7 @@ module.exports = {
       }),
       // 将css代码识别为有副作用，避免tree-sahking执行全局import 'styles.css'失效
       sideEffects: true,
+      // 排除node_modules文件，模块化的情况
       exclude: /node_modules/,
     }, {
       test: /\.(js|jsx)$/,
@@ -169,7 +171,7 @@ module.exports = {
       ],
     }),
     // 提取css代码
-    new ExtractTextPlugin(isProd ? 'bundle@[chunkhash].css' : 'bundle.css'),
+    new ExtractTextPlugin('bundle@[chunkhash].css'),
     // 将js、css代码插入html模板文件中
     new HtmlWebpackPlugin({
       // title: 'Hello World app',
