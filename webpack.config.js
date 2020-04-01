@@ -6,7 +6,9 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HappyPack = require('happypack');
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 
+const smp = new SpeedMeasurePlugin();
 const { NODE_ENV } = process.env;
 const isProd = NODE_ENV === 'production';
 
@@ -34,7 +36,7 @@ function getNetworkIp() {
 }
 
 
-module.exports = {
+const config = {
   entry: ['./src/index.js'],
   output: {
     filename: isProd ? 'bundle@[chunkhash].js' : 'bundle.js',
@@ -167,7 +169,13 @@ module.exports = {
       loaders: [
         // // 自定义loader,增加'use strict'
         // 'force-strict-loader',
-        'babel-loader',
+        {
+          loader: 'babel-loader',
+          options: {
+            // 缓存编译文件，提升第二次构建速度，缓存目录：node_modules/.cache/babel-loader
+            cacheDirectory: true,
+          },
+        },
       ],
     }),
     // 提取css代码
@@ -188,3 +196,5 @@ module.exports = {
     new ProgressBarPlugin(),
   ],
 };
+
+module.exports = smp.wrap(config);

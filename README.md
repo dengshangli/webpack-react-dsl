@@ -50,14 +50,15 @@ npm run build
   "@babel/core": "babel核心包，编译的transform方法在这个包里",
   "@babel/preset-env": "babel预设，让高级js代码转换到不同的目标环境中，集成多个pulgin",
   "@babel/preset-react":  "babel预设，让babel编译react代码",
-  "@babel/runtime": "提取编译生成的公用方法到其他文件，再引入这些方法，避免生成大量重复的代码",
   "@babel/plugin-transform-runtime": "辅助插件，它会自动动态require @babel/runtime中的内容",
   "happypack": "开启多个线程，让多个loader并行执行", 
   "progress-bar-webpack-plugin": "webpack插件，让控制台显示打包进度",
    "husky": "注册 git hook, 安装后在script里边写precommit命令，在git commit时会先执行这个命令，可以用来做提交前代码检查",
    "lint-staged": "取得所有被提交的文件依次执行写好的任务",
+   "speed-measure-webpack-plugin": "让控制台显示weback各个plugin和loader构建的时间，非必须，用于监控构建时间",
   }
   "dependencies": {
+    "@babel/runtime": "提取编译生成的公用方法到其他文件，再引入这些方法，避免生成大量重复的代码",
     "@babel/polyfill": "让目标浏览器支持所有新特性，不管它是全局的，还是原型的，通过它，不同浏览器在特性支持上就站到同一起跑线",
     "core-js": "core-js就是@babel/polyfill的核心依赖,它尽可能的进行模块化，让你能选择你需要的功能,它可以不污染全局空间",
     "react": "react的核心代码",

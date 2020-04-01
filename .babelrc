@@ -1,7 +1,6 @@
 {
   //babel预设，目的是为了方便配置，集成了多个插件
   "presets": [
-    "@babel/preset-react",
     [
       "@babel/preset-env", 
       { 
@@ -12,9 +11,11 @@
         // 指明corejs版本
         "corejs": 3
       }
-    ]
+    ],
+    // 插件预设从右向左执行，因此将react的插件预设放在右边
+    "@babel/preset-react"
   ],
-  // babel插件
+  // babel插件，插件从左向右执行
   "plugins": [
     "@babel/plugin-transform-runtime"
   ]
