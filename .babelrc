@@ -6,7 +6,11 @@
       "@babel/preset-env", 
       { 
         // 把 modules 设置为 false，就是告诉 babel 不要编译模块代语句。这会让 Babel 保留我们现有的 es2015 import/export 语句。
-        "modules": false
+        "modules": false,
+        // 让编译后的代码只包含需要的 polyfill，而不是全部引入，减少构建体积
+        "useBuiltIns": "usage",
+        // 指明corejs版本
+        "corejs": 3
       }
     ]
   ],

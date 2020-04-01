@@ -35,7 +35,7 @@ function getNetworkIp() {
 
 
 module.exports = {
-  entry: ['@babel/polyfill', './src/index.js'],
+  entry: ['./src/index.js'],
   output: {
     filename: isProd ? 'bundle@[chunkhash].js' : 'bundle.js',
   },
