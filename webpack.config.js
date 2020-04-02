@@ -6,9 +6,8 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HappyPack = require('happypack');
-const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
-const smp = new SpeedMeasurePlugin();
 const { NODE_ENV } = process.env;
 const isProd = NODE_ENV === 'production';
 
@@ -36,7 +35,7 @@ function getNetworkIp() {
 }
 
 
-const config = {
+module.exports = {
   entry: ['./src/index.js'],
   output: {
     filename: isProd ? 'bundle@[chunkhash].js' : 'bundle.js',
@@ -103,6 +102,7 @@ const config = {
       test: /\.(less|css)$/,
       use: ExtractTextPlugin.extract({
         use: [
+          'cache-loader',
           // 这里对css不开启模块化，防止 import './style.css' 这种类型的样式失效
           'css-loader',
           'postcss-loader',
@@ -122,6 +122,7 @@ const config = {
       test: /\.(less|css)$/,
       use: ExtractTextPlugin.extract({
         use: [
+          'cache-loader',
           {
             loader: 'css-loader',
             options: {
@@ -150,6 +151,7 @@ const config = {
     }, {
       test: /\.(png|jpg|gif|svg)$/,
       use: [
+        'cache-loader',
         {
           loader: 'url-loader',
           options: {
@@ -169,11 +171,13 @@ const config = {
       loaders: [
         // // 自定义loader,增加'use strict'
         // 'force-strict-loader',
+        'cache-loader',
         {
           loader: 'babel-loader',
           options: {
-            // 缓存编译文件，提升第二次构建速度，缓存目录：node_modules/.cache/babel-loader
-            cacheDirectory: true,
+            // 缓存编译文件，提升第二次构建速度，缓存文件：node_modules/.cache/babel-loader
+            // 因为使用了cache-loader，所以这里不再使用
+            // cacheDirectory: true,
           },
         },
       ],
@@ -194,7 +198,9 @@ const config = {
     }),
     // 让控制台显示打包进度
     new ProgressBarPlugin(),
+    // 为模块提供中间缓存，缓存默认的存放路径是: node_modules/.cache/hard-source。
+    // 首次构建时间没有太大变化，但是第二次开始，构建时间大约可以节约 90%。
+    // DellPlugin用于代码拆分，这个插件可以代替DellPlugin
+    new HardSourceWebpackPlugin(),
   ],
 };
-
-module.exports = smp.wrap(config);

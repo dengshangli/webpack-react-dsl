@@ -12,6 +12,7 @@ npm run build
 ```
 
 ### pacakge.json解析
+已注释掉的代表目前没有使用
 ```javascript
   "scripts": {
     "start": "启动项目，运行dev",
@@ -55,7 +56,9 @@ npm run build
   "progress-bar-webpack-plugin": "webpack插件，让控制台显示打包进度",
    "husky": "注册 git hook, 安装后在script里边写precommit命令，在git commit时会先执行这个命令，可以用来做提交前代码检查",
    "lint-staged": "取得所有被提交的文件依次执行写好的任务",
-   "speed-measure-webpack-plugin": "让控制台显示weback各个plugin和loader构建的时间，非必须，用于监控构建时间",
+   // "speed-measure-webpack-plugin": "让控制台显示weback各个plugin和loader构建的时间，非必须，用于监控构建时间",
+   "hard-source-webpack-plugin": "为模块提供中间缓存，第二次构建时速度可提升80%",
+   "cache-loader": "缓存loder编译后的文件，放在所有loader之前，表示最后使用",
   }
   "dependencies": {
     "@babel/runtime": "提取编译生成的公用方法到其他文件，再引入这些方法，避免生成大量重复的代码",
