@@ -28,6 +28,8 @@ module.exports = {
     // 支持jsx及js拓展文件
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     // "no-console": "off",
+    // 忽略语句分号
+    'semi': 0,
   },
   
   settings: {

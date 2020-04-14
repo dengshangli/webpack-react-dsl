@@ -1,7 +1,21 @@
+import '@babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '@babel/polyfill';
-import App from './App';
-import 'antd/dist/antd.css';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
+import rootReducer from './reducers';
+import rootSaga from './sagas';
+import App from './components/App';
+// import 'antd/dist/antd.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(rootSaga);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root'),
+);
