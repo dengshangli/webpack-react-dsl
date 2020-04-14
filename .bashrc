@@ -1,6 +1,6 @@
 
-# function push() {
-#     git add .
-#     git commit -a -m "$1"
-#     git push
-# }
+function push() {
+    git add .
+    git commit -a -m "$1"
+    git push
+}
