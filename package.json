@@ -7,7 +7,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --port  --process.env.NODE_ENV",
     "build": "cross-env NODE_ENV=production webpack",
     "buildLib": "babel src -d lib --copy-files",
-    "push": "echo git add . & git commit -a -m $npm_package_name & git push",
+    "push": "echo git add . & git commit -a -m $msg & git push",
     "lint": "npm run lint:js & npm run lint:style",
     "lint:js": "npx eslint src/**/*.{js,jsx}",
     "lint:style": "npx stylelint src/**/*.{css,less}"
