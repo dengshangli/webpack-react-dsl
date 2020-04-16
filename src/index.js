@@ -14,7 +14,7 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />q
+    <App />
   </Provider>,
   document.getElementById('root'),
 );
