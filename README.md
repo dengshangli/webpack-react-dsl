@@ -11,6 +11,15 @@ npm start 或 npm run dev
 npm run build
 ```
 
+### 推送代码
+```javascript
+// 使用bash
+source .bashrc
+push '修改信息'
+// 或
+msg='修改信息' npm run push
+```
+
 ### pacakge.json解析
 已注释掉的代表目前没有使用
 ```javascript
