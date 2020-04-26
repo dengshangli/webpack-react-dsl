@@ -21,7 +21,8 @@ npm run build
     "buildLib": "生成lib目录，代码为babel编译后的代码,  --copy-files表示所有文件都编译，不加表示只编译js",
     "lint": "检查js代码及样式代码",
     "lint:js": "检查js代码，包括.js及.jsx结尾代码",
-    "lint:style": "检查样式代码，包括css及less"
+    "lint:style": "检查样式代码，包括css及less",
+    "push": "向远程仓库推送代码，例：msg=修改信息 npm run push, 提示：使用bash才可运行成功"
   },
   "sideEffects": "false，告诉 Webpack 没有文件有副作用，所有文件都可以 tree-shaking,会识别全局导入css为无用代码，造成全局导入css被删除，例：import './MyStylesheet.css';，可在css相关loader重新设为true",
   "peerDependency": "解决node_module目录下嵌套多层的问题，例a、b模块同时依赖c模块，a、b模块里把对c的依赖写在peerDependency里边，安装时c模块会与a、b模块同级, 用dependencies会生成多层node_module",
