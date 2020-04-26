@@ -10,7 +10,6 @@
     "lint": "npm run lint:js & npm run lint:style",
     "lint:js": "npx eslint src/**/*.{js,jsx}",
     "lint:style": "npx stylelint src/**/*.{css,less}",
-    "excute": "node src/test.js",
     "push": "git add . & git commit -a -m %msg% & git push"
   },
   "author": "dengshangli",
