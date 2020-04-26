@@ -13,11 +13,11 @@ npm run build
 
 ### 推送代码
 ```javascript
-// 使用bash
+// 使用bash，其中source .bashrc执行一次即可，第二次直接push
 source .bashrc
 push '修改信息'
-// 或
-msg='修改信息' npm run push
+// 或 使用bash
+msg=修改信息 npm run push
 ```
 
 ### pacakge.json解析
