@@ -69,6 +69,9 @@ msg=修改信息 npm run push
    // "speed-measure-webpack-plugin": "让控制台显示weback各个plugin和loader构建的时间，非必须，用于监控构建时间",
    "hard-source-webpack-plugin": "为模块提供中间缓存，第二次构建时速度可提升80%",
    "cache-loader": "缓存loder编译后的文件，放在所有loader之前，表示最后使用",
+   "prettier": "代码风格校验，与eslint-plugin-prettier、eslint-config-prettier配合使用，与eslint的区别是，eslint注重代码质量，而prettier只校验代码风格",
+   "eslint-plugin-prettier": "让eslint报告prettier的错误",
+   "eslint-config-prettier": "禁用掉eslint的代码风格校验，默认用prettier的风格校验",
   }
   "dependencies": {
     "@babel/runtime": "提取编译生成的公用方法到其他文件，再引入这些方法，避免生成大量重复的代码",

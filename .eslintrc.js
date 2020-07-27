@@ -7,8 +7,10 @@ module.exports = {
     es6: true,
   },
   extends: [
+    'eslint:recommended',
     'plugin:react/recommended',
     'airbnb',
+    "plugin:prettier/recommended",
   ],
   globals: {
     Atomics: 'readonly',
