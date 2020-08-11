@@ -34,7 +34,6 @@ function getNetworkIp() {
   return needHost;
 }
 
-
 module.exports = {
   entry: ['./src/index.js'],
   output: {
@@ -60,8 +59,8 @@ module.exports = {
       }),
       // css代码压缩插件
       new OptimizeCSSAssetsPlugin({
-      // 压缩处理器, 默认为 cssnano，webpack内置，不用安装
-      // cssnano 将你的 CSS 文件做 多方面的的优化，以确保最终生成的文件 对生产环境来说体积是最小的
+        // 压缩处理器, 默认为 cssnano，webpack内置，不用安装
+        // cssnano 将你的 CSS 文件做 多方面的的优化，以确保最终生成的文件 对生产环境来说体积是最小的
         // eslint-disable-next-line global-require
         cssProcessor: require('cssnano'),
         // 压缩处理器的配置
@@ -77,7 +76,6 @@ module.exports = {
     alias: {
       // 为某个路径取别名
       '@': path.resolve(__dirname, 'src/'),
-
     },
     // 在执行import语句时遇到以下文件，后缀时可以省略
     extensions: ['.js', '.jsx'],
@@ -98,71 +96,76 @@ module.exports = {
     host: getNetworkIp(),
   },
   module: {
-    rules: [{
-      test: /\.(less|css)$/,
-      use: ExtractTextPlugin.extract({
+    rules: [
+      {
+        test: /\.(less|css)$/,
+        use: ExtractTextPlugin.extract({
+          use: [
+            'cache-loader',
+            // 这里对css不开启模块化，防止 import './style.css' 这种类型的样式失效
+            'css-loader',
+            'postcss-loader',
+            {
+              loader: 'less-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
+        }),
+        // 将css代码识别为有副作用，避免tree-sahking执行全局import 'styles.css'失效
+        sideEffects: true,
+        // 只编译node_modules文件，不模块化的情况
+        include: /node_modules/,
+      },
+      {
+        test: /\.(less|css)$/,
+        use: ExtractTextPlugin.extract({
+          use: [
+            'cache-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                // 开启css模块化
+                modules: { localIdentName: '[path][name]__[local]--[hash:base64:5]' },
+                sourceMap: true,
+              },
+            },
+            'postcss-loader',
+            {
+              loader: 'less-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
+        }),
+        // 将css代码识别为有副作用，避免tree-sahking执行全局import 'styles.css'失效
+        sideEffects: true,
+        // 排除node_modules文件，模块化的情况
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(js|jsx)$/,
+        loader: 'happypack/loader?id=js',
+        exclude: /(node_modules|bower_components)/,
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
         use: [
           'cache-loader',
-          // 这里对css不开启模块化，防止 import './style.css' 这种类型的样式失效
-          'css-loader',
-          'postcss-loader',
           {
-            loader: 'less-loader',
+            loader: 'url-loader',
             options: {
-              sourceMap: true,
+              // 表示小于限制大小后图片转化为base64,单位Byte,1024Byte(字节)=1KB
+              limit: 10240,
+              name: '[name].[ext]',
+              outputPath: './assets/',
             },
           },
         ],
-      }),
-      // 将css代码识别为有副作用，避免tree-sahking执行全局import 'styles.css'失效
-      sideEffects: true,
-      // 只编译node_modules文件，不模块化的情况
-      include: /node_modules/,
-    }, {
-      test: /\.(less|css)$/,
-      use: ExtractTextPlugin.extract({
-        use: [
-          'cache-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              // 开启css模块化
-              modules: { localIdentName: '[path][name]__[local]--[hash:base64:5]' },
-              sourceMap: true,
-            },
-          },
-          'postcss-loader',
-          {
-            loader: 'less-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-        ],
-      }),
-      // 将css代码识别为有副作用，避免tree-sahking执行全局import 'styles.css'失效
-      sideEffects: true,
-      // 排除node_modules文件，模块化的情况
-      exclude: /node_modules/,
-    }, {
-      test: /\.(js|jsx)$/,
-      loader: 'happypack/loader?id=js',
-      exclude: /(node_modules|bower_components)/,
-    }, {
-      test: /\.(png|jpg|gif|svg)$/,
-      use: [
-        'cache-loader',
-        {
-          loader: 'url-loader',
-          options: {
-            // 表示小于限制大小后图片转化为base64,单位Byte,1024Byte(字节)=1KB
-            limit: 10240,
-            name: '[name].[ext]',
-            outputPath: './assets/',
-          },
-        },
-      ],
-    }],
+      },
+    ],
   },
   plugins: [
     // 开启多个线程构建，提升构建速度
@@ -187,7 +190,8 @@ module.exports = {
     // 将js、css代码插入html模板文件中
     new HtmlWebpackPlugin({
       // title: 'Hello World app',
-      minify: { // 压缩HTML文件
+      minify: {
+        // 压缩HTML文件
         removeComments: true, // 移除HTML中的注释
         collapseWhitespace: true, // 删除空白符与换行符
         minifyCSS: true, // 压缩内联css
