@@ -1,3 +1,11 @@
+<!--
+ * @Author: 邓尚理
+ * @Date: 2020-04-02 18:53:00
+ * @LastEditTime: 2020-08-11 18:19:19
+ * @LastEditors: 邓尚理
+ * @Description: 
+ * @FilePath: \webpack-react-dsl\README.md
+-->
 ### 安装与运行
 ```javascript
 // 安装依赖
@@ -72,6 +80,7 @@ msg=修改信息 npm run push
    "prettier": "代码风格校验，与eslint-plugin-prettier、eslint-config-prettier配合使用，与eslint的区别是，eslint注重代码质量，而prettier只校验代码风格",
    "eslint-plugin-prettier": "让eslint报告prettier的错误",
    "eslint-config-prettier": "禁用掉eslint的代码风格校验，默认用prettier的风格校验",
+   // "stylelint-config-prettier": "禁用掉stylelint的代码风格校验，默认用prettier的风格校验",
   }
   "dependencies": {
     "@babel/runtime": "提取编译生成的公用方法到其他文件，再引入这些方法，避免生成大量重复的代码",
