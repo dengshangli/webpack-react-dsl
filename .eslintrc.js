@@ -1,3 +1,11 @@
+/*
+ * @Author: 邓尚理
+ * @Date: 2020-03-30 14:40:37
+ * @LastEditTime: 2020-08-14 17:34:46
+ * @LastEditors: 邓尚理
+ * @Description: 
+ * @FilePath: \webpack-react-dsl\.eslintrc.js
+ */
 
 const path = require('path');
 

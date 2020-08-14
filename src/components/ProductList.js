@@ -1,23 +1,29 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import ProductItem from './ProductItem'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import ProductItem from './ProductItem';
 
-import { connect } from 'react-redux'
-import { addToCart } from '../actions'
-import { getVisibleProducts } from '../reducers/products'
+import { addToCart } from '../actions';
+import { getVisibleProducts } from '../reducers/products';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class ProductList extends Component {
   render() {
-    const { products, addToCart } = this.props
+    // eslint-disable-next-line no-shadow
+    const { products, addToCart } = this.props;
 
     return (
       <div>
         <h3>Products</h3>
-        {products.map(product => (
-          <ProductItem key={product.id} product={product} onAddToCartClicked={() => addToCart(product.id)} />
+        {products.map((product) => (
+          <ProductItem
+            key={product.id}
+            product={product}
+            onAddToCartClicked={() => addToCart(product.id)}
+          />
         ))}
       </div>
-    )
+    );
   }
 }
 
@@ -31,9 +37,8 @@ ProductList.propTypes = {
     }),
   ).isRequired,
   addToCart: PropTypes.func.isRequired,
-}
+};
 
-export default connect(
-  state => ({ products: getVisibleProducts(state.products) }),
-  { addToCart },
-)(ProductList)
+export default connect((state) => ({ products: getVisibleProducts(state.products) }), {
+  addToCart,
+})(ProductList);

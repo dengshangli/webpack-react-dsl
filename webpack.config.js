@@ -7,6 +7,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HappyPack = require('happypack');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const { NODE_ENV } = process.env;
 const isProd = NODE_ENV === 'production';
@@ -34,7 +36,7 @@ function getNetworkIp() {
   return needHost;
 }
 
-module.exports = {
+const config = {
   entry: ['./src/index.js'],
   output: {
     filename: isProd ? 'bundle@[chunkhash].js' : 'bundle.js',
@@ -94,6 +96,8 @@ module.exports = {
     open: true,
     // 域名配置，用本机ip
     host: getNetworkIp(),
+    // 编译出错的时候，在浏览器页面上显示错误和警告
+    overlay: true,
   },
   module: {
     rules: [
@@ -198,7 +202,7 @@ module.exports = {
       },
       filename: 'index.html',
       template: path.resolve('public/index.html'),
-      favicon: './src/assets/favicon.ico',
+      // favicon: './src/assets/favicon.ico',
     }),
     // 让控制台显示打包进度
     new ProgressBarPlugin(),
@@ -206,5 +210,21 @@ module.exports = {
     // 首次构建时间没有太大变化，但是第二次开始，构建时间大约可以节约 90%。
     // DellPlugin用于代码拆分，这个插件可以代替DellPlugin
     new HardSourceWebpackPlugin(),
+    // 拷贝public里面文件到dist
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'public',
+          to: '',
+        },
+      ],
+    }),
   ],
 };
+
+if (isProd) {
+  // 第二次构建时清除打包文件夹
+  config.plugins.push(new CleanWebpackPlugin());
+}
+
+module.exports = config;

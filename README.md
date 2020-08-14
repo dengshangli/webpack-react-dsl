@@ -1,7 +1,7 @@
 <!--
  * @Author: 邓尚理
  * @Date: 2020-04-02 18:53:00
- * @LastEditTime: 2020-08-11 18:19:19
+ * @LastEditTime: 2020-08-14 17:40:20
  * @LastEditors: 邓尚理
  * @Description: 
  * @FilePath: \webpack-react-dsl\README.md
@@ -55,7 +55,7 @@ msg=修改信息 npm run push
   "postcss-loader": "css插件工具，例如针对不同浏览器环境加前缀",
   "stylelint": "css代码检查工具",
   "webpack": "代码打包工具",
-  "webpack-cli": "webpack命令行工具",
+  // "webpack-cli": "webpack命令行工具, 非必须",
   "webpack-dev-server": "开启一个本地服务，使用便于缓存代码运行，并非真正打包，需与html-webpack-plugin结合使用",
   "eslint": "js代码检查工具",
   // "eslint-loader": "在项目构建时进行js代码检查",
@@ -81,6 +81,9 @@ msg=修改信息 npm run push
    "eslint-plugin-prettier": "让eslint报告prettier的错误",
    "eslint-config-prettier": "禁用掉eslint的代码风格校验，默认用prettier的风格校验",
    // "stylelint-config-prettier": "禁用掉stylelint的代码风格校验，默认用prettier的风格校验",
+   "terser-webpack-plugin": "js代码压缩插件",
+   "copy-webpack-plugin": "将webpack打包不涉及的目录copy到打包目录",
+   "clean-webpack-plugin": "清除上一次构建的目录，用于生产环境",
   }
   "dependencies": {
     "@babel/runtime": "提取编译生成的公用方法到其他文件，再引入这些方法，避免生成大量重复的代码",
