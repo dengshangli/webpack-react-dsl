@@ -1,7 +1,7 @@
 <!--
  * @Author: 邓尚理
  * @Date: 2020-04-02 18:53:00
- * @LastEditTime: 2020-08-14 17:40:20
+ * @LastEditTime: 2020-08-17 17:52:54
  * @LastEditors: 邓尚理
  * @Description: 
  * @FilePath: \webpack-react-dsl\README.md
@@ -75,8 +75,8 @@ msg=修改信息 npm run push
    "husky": "注册 git hook, 安装后在script里边写precommit命令，在git commit时会先执行这个命令，可以用来做提交前代码检查",
    "lint-staged": "取得所有被提交的文件依次执行写好的任务",
    // "speed-measure-webpack-plugin": "让控制台显示weback各个plugin和loader构建的时间，非必须，用于监控构建时间",
-   "hard-source-webpack-plugin": "为模块提供中间缓存，第二次构建时速度可提升80%",
-   "cache-loader": "缓存loder编译后的文件，放在所有loader之前，表示最后使用",
+   "hard-source-webpack-plugin": "为模块提供中间缓存，第二次构建时速度可提升80%，缺点是每次编译会在.cache文件里新增缓存文件",
+  //  "cache-loader": "缓存loder编译后的文件，放在所有loader之前，表示最后使用，bable-loader也有缓存功能，通常不建议使用，除非css、或图片等文件太大，这时可以在css-loader或url-loader处使用",
    "prettier": "代码风格校验，与eslint-plugin-prettier、eslint-config-prettier配合使用，与eslint的区别是，eslint注重代码质量，而prettier只校验代码风格",
    "eslint-plugin-prettier": "让eslint报告prettier的错误",
    "eslint-config-prettier": "禁用掉eslint的代码风格校验，默认用prettier的风格校验",

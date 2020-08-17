@@ -105,7 +105,6 @@ const config = {
         test: /\.(less|css)$/,
         use: ExtractTextPlugin.extract({
           use: [
-            'cache-loader',
             // 这里对css不开启模块化，防止 import './style.css' 这种类型的样式失效
             'css-loader',
             'postcss-loader',
@@ -126,7 +125,6 @@ const config = {
         test: /\.(less|css)$/,
         use: ExtractTextPlugin.extract({
           use: [
-            'cache-loader',
             {
               loader: 'css-loader',
               options: {
@@ -176,15 +174,15 @@ const config = {
     new HappyPack({
       id: 'js',
       loaders: [
-        // // 自定义loader,增加'use strict'
+        // 自定义loader,增加'use strict'
         // 'force-strict-loader',
+        // 因为babel-loader已经有缓存功能，所以不再使用
         'cache-loader',
         {
           loader: 'babel-loader',
           options: {
             // 缓存编译文件，提升第二次构建速度，缓存文件：node_modules/.cache/babel-loader
-            // 因为使用了cache-loader，所以这里不再使用
-            // cacheDirectory: true,
+            cacheDirectory: true,
           },
         },
       ],
