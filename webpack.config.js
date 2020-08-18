@@ -155,7 +155,6 @@ const config = {
       {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
-          'cache-loader',
           {
             loader: 'url-loader',
             options: {
@@ -177,7 +176,7 @@ const config = {
         // 自定义loader,增加'use strict'
         // 'force-strict-loader',
         // 因为babel-loader已经有缓存功能，所以不再使用
-        'cache-loader',
+        // 'cache-loader',
         {
           loader: 'babel-loader',
           options: {
